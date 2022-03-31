@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663960199514",
+    "project_id": "phonic-monolith-333903",
+    "storage_bucket": "phonic-monolith-333903.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663960199514:android:11e2857d15ac1e4b421363",
+        "android_client_info": {
+          "package_name": "com.example.digitmoni_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663960199514-oi0tchicf48mgnmmf476t183u62dp2lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo-KiH5NdahIhA99nO0SaabmLOs_-4E5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663960199514-oi0tchicf48mgnmmf476t183u62dp2lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
