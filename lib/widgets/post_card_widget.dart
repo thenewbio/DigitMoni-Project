@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class PostCard extends StatefulWidget {
-  final snap;
+  final dynamic snap;
   const PostCard({
     Key? key,
     required this.snap,
@@ -34,7 +34,7 @@ class _PostCardState extends State<PostCard> {
 
   fetchCommentLen() async {
     try {
-      QuerySnapshot snap = await FirebaseFirestore.instance
+      QuerySnapshot? snap = await FirebaseFirestore.instance
           .collection('posts')
           .doc(widget.snap['postId'])
           .collection('comments')
@@ -62,7 +62,7 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final model.User? user = Provider.of<UserProvider>(context).getUser;
+    final model.User user = Provider.of<UserProvider>(context).getUser;
     final width = MediaQuery.of(context).size.width;
 
     return Container(
@@ -111,7 +111,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
-                widget.snap['uid'].toString() == user!.uid
+                widget.snap['uid'].toString() == user.uid
                     ? IconButton(
                         onPressed: () {
                           showDialog(
@@ -174,7 +174,7 @@ class _PostCardState extends State<PostCard> {
                   height: MediaQuery.of(context).size.height * 0.35,
                   width: double.infinity,
                   child: Image.network(
-                    '${widget.snap['postUrl']}',
+                    widget.snap['postUrl'],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -244,7 +244,10 @@ class _PostCardState extends State<PostCard> {
                   child: Align(
                 alignment: Alignment.bottomRight,
                 child: IconButton(
-                    icon: const Icon(Icons.bookmark_border), onPressed: () {}),
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      deletePost(widget.snap['postId'].toString());
+                    }),
               ))
             ],
           ),

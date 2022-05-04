@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
               title: Text(
-                userData['username'],
+                '${userData['username']}',
               ),
               centerTitle: false,
             ),
