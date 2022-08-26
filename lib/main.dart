@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digitmoni_project/providers/user_provider.dart';
 import 'package:digitmoni_project/responsive/mobile_layout.dart';
 import 'package:digitmoni_project/responsive/responsive_layout.dart';
@@ -9,6 +10,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'adim/widgets/screens/admin_dashboard.dart';
+import 'providers/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,9 +32,15 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final DocumentSnapshot snapshot;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -38,70 +48,63 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
+        ChangeNotifierProvider(create: (_) => ModelTheme()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'DigitMoni News App',
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: mobileBackgroundColor,
-        ),
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              // Checking if the snapshot has any data or not
-              if (snapshot.hasData) {
-                // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
-                return const ResponsiveLayout(
-                  mobileScreenLayout: MobileScreenLayout(),
-                  webScreenLayout: WebScreenLayout(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('${snapshot.error}'),
-                );
-              }
-            }
+      child: Consumer<ModelTheme>(
+        builder: (context, ModelTheme themeNotifier, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter',
+            theme: themeNotifier.isDark
+                ? ThemeData(
+                    brightness: Brightness.dark,
+                  )
+                : ThemeData(
+                    brightness: Brightness.light,
+                    primaryColor: Colors.amber,
+                    primarySwatch: Colors.purple),
+            home: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  // Checking if the snapshot has any data or not
+                  if (snapshot.hasData) {
+                    // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
+                    return const ResponsiveLayout(
+                      mobileScreenLayout: MobileScreenLayout(),
+                      webScreenLayout: WebScreenLayout(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('${snapshot.error}'),
+                    );
+                  }
+                }
 
-            // means connection to future hasnt been made yet
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+                // means connection to future hasnt been made yet
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
 
-            return const LoginScreen();
-          },
-        ),
+                return const LoginScreen();
+              },
+            ),
+          );
+        },
       ),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            widget.title,
-          ),
-          centerTitle: true,
-        ),
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-            "assets/digit.jpg",
-          ))),
-        ));
-  }
+  // Widget checkRole() {
+  //   if (snapshot.get('role') == "admin") {
+  //     return const AdminPage();
+  //   } else {
+  //     return const ResponsiveLayout(
+  //       mobileScreenLayout: MobileScreenLayout(),
+  //       webScreenLayout: WebScreenLayout(),
+  //     );
+  //   }
+  // }
 }

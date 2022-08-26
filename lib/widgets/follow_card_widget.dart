@@ -23,7 +23,7 @@ class FollowButton extends StatelessWidget {
         onPressed: function,
         child: Container(
           decoration: BoxDecoration(
-            color: backgroundColor,
+            // color: backgroundColor,
             border: Border.all(
               color: borderColor,
             ),

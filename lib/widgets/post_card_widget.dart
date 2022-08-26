@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:digitmoni_project/models/user.dart' as model;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PostCard extends StatefulWidget {
   final dynamic snap;
@@ -69,9 +70,9 @@ class _PostCardState extends State<PostCard> {
       // boundary needed for web
       decoration: BoxDecoration(
         border: Border.all(
-          color: width > webScreenSize ? secondaryColor : mobileBackgroundColor,
-        ),
-        color: mobileBackgroundColor,
+            // color: width > webScreenSize ? secondaryColor : mobileBackgroundColor,
+            ),
+        // color: mobileBackgroundColor,
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
@@ -170,13 +171,26 @@ class _PostCardState extends State<PostCard> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                SizedBox(
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
                   height: MediaQuery.of(context).size.height * 0.35,
                   width: double.infinity,
-                  child: Image.network(
-                    widget.snap['postUrl'],
-                    fit: BoxFit.cover,
+                  child: CachedNetworkImage(
+                    fadeInCurve: Curves.easeIn,
+                    fadeInDuration: Duration(seconds: 5),
+                    fit: BoxFit.fill,
+                    imageUrl: widget.snap['postUrl'],
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Container(
+                      color: Colors.blueGrey,
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
+                  // Image.network(
+                  //   widget.snap['postUrl'],
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
                 AnimatedOpacity(
                   duration: const Duration(milliseconds: 200),
@@ -240,15 +254,6 @@ class _PostCardState extends State<PostCard> {
                     Icons.send,
                   ),
                   onPressed: () {}),
-              Expanded(
-                  child: Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      deletePost(widget.snap['postId'].toString());
-                    }),
-              ))
             ],
           ),
           //DESCRIPTION AND NUMBER OF COMMENTS
@@ -265,29 +270,16 @@ class _PostCardState extends State<PostCard> {
                         .copyWith(fontWeight: FontWeight.w800),
                     child: Text(
                       '${widget.snap['likes'].length} likes',
-                      style: Theme.of(context).textTheme.bodyText2,
+                      // style: Theme.of(context).textTheme.bodyText2,
                     )),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(
                     top: 8,
                   ),
-                  child: RichText(
-                    text: TextSpan(
-                      style: const TextStyle(color: primaryColor),
-                      children: [
-                        TextSpan(
-                          text: '${widget.snap['username']}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' ${widget.snap['description']}',
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: Text(' ${widget.snap['description']}',
+                      style:
+                          const TextStyle(fontSize: 16, color: secondaryColor)),
                 ),
                 InkWell(
                   child: Container(
@@ -313,8 +305,8 @@ class _PostCardState extends State<PostCard> {
                     DateFormat.yMMMd()
                         .format(widget.snap['datePublished'].toDate()),
                     style: const TextStyle(
-                      color: secondaryColor,
-                    ),
+                        // color: secondaryColor,
+                        ),
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 4),
                 ),

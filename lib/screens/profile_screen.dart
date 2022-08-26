@@ -204,11 +204,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 const Divider(),
-                FutureBuilder(
-                  future: FirebaseFirestore.instance
+                StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
                       .collection('posts')
                       .where('uid', isEqualTo: widget.uid)
-                      .get(),
+                      .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(
@@ -218,7 +218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                     return GridView.builder(
                       shrinkWrap: true,
-                      itemCount: (snapshot.data! as dynamic).docs.length,
+                      itemCount: snapshot.data!.docs.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
@@ -227,13 +227,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         childAspectRatio: 1,
                       ),
                       itemBuilder: (context, index) {
-                        DocumentSnapshot snap =
-                            (snapshot.data! as dynamic).docs[index];
+                        final snap = snapshot.data!.docs;
 
                         // ignore: avoid_unnecessary_containers
                         return Container(
                           child: Image(
-                              image: NetworkImage(snap['postUrl']),
+                              image: NetworkImage(snap[index].get('postUrl')),
                               fit: BoxFit.cover),
                         );
                       },

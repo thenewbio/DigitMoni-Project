@@ -18,15 +18,17 @@ class TextFieldInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inputBorder = OutlineInputBorder(
-      borderSide: Divider.createBorderSide(context, color: Colors.black),
+      borderSide: Divider.createBorderSide(
+        context,
+      ),
     );
 
     return TextField(
-      style: TextStyle(color: color),
+      style: TextStyle(),
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: color),
+        hintStyle: TextStyle(),
         border: inputBorder,
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,
