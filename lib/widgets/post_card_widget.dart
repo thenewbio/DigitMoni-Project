@@ -3,11 +3,11 @@ import 'package:digitmoni_project/providers/user_provider.dart';
 import 'package:digitmoni_project/resources/firestore_method.dart';
 import 'package:digitmoni_project/screens/comment_screen.dart';
 import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/dimensions.dart';
 import 'package:digitmoni_project/utils/pick_utils.dart';
 import 'package:digitmoni_project/widgets/like_animation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:digitmoni_project/models/user.dart' as model;
+import 'package:flutter_readmore/flutter_readmore.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -277,7 +277,11 @@ class _PostCardState extends State<PostCard> {
                   padding: const EdgeInsets.only(
                     top: 8,
                   ),
-                  child: Text(' ${widget.snap['description']}',
+                  child: ReadMore(' ${widget.snap['description']}',
+                      trimLines: 1,
+                      trimCollapsedText: 'Read more',
+                      trimExpandedText: 'see less',
+                      trimLength: 100,
                       style:
                           const TextStyle(fontSize: 16, color: secondaryColor)),
                 ),

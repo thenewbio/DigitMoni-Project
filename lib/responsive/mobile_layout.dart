@@ -44,46 +44,41 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         children: homeScreenItems,
         controller: pageController,
         onPageChanged: onPageChanged,
+        physics: const NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: CupertinoTabBar(
-        // backgroundColor: mobileBackgroundColor,
-        items: <BottomNavigationBarItem>[
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              // color: (_page == 0) ?  : secondaryColor,
             ),
-            label: '',
+            label: 'Home',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.search,
-                // color: (_page == 1) ? primaryColor : secondaryColor,
               ),
-              label: '',
+              label: 'Search',
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.add_circle,
-                // color: (_page == 2) ? primaryColor : secondaryColor,
               ),
-              label: '',
+              label: 'Add Post',
               backgroundColor: primaryColor),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.notifications,
-              // color: (_page == 3) ? primaryColor : secondaryColor,
+              Icons.chat,
             ),
-            label: '',
+            label: 'chats',
             backgroundColor: primaryColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: (_page == 4) ? primaryColor : secondaryColor,
             ),
-            label: '',
+            label: 'profile',
             // backgroundColor: primaryColor,
           ),
         ],

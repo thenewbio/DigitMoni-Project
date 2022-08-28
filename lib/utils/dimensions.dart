@@ -1,4 +1,7 @@
 import 'package:digitmoni_project/screens/addpost_screen.dart';
+import 'package:digitmoni_project/screens/chat_screen.dart';
+import 'package:digitmoni_project/screens/e2echat_screen.dart';
+import 'package:digitmoni_project/screens/onetoonechat.dart';
 import 'package:digitmoni_project/screens/posts_screen.dart';
 import 'package:digitmoni_project/screens/profile_screen.dart';
 import 'package:digitmoni_project/screens/search_screen.dart';
@@ -29,7 +32,7 @@ List<Widget> homeScreenItems = [
   const FeedScreen(),
   const SearchScreen(),
   const AddPostScreen(),
-  const Text('notifications'),
+  const Chat(),
   ProfileScreen(
     uid: FirebaseAuth.instance.currentUser!.uid,
   ),

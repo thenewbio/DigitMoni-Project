@@ -1,13 +1,16 @@
 // ignore: file_names
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:digitmoni_project/models/user.dart';
 import 'package:digitmoni_project/providers/user_provider.dart';
 import 'package:digitmoni_project/resources/firestore_method.dart';
 import 'package:digitmoni_project/utils/colors.dart';
 import 'package:digitmoni_project/utils/pick_utils.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);
@@ -61,6 +64,40 @@ class _AddPostScreenState extends State<AddPostScreen> {
     );
   }
 
+  Future<bool> _sendNotification(String username, String description) async {
+    var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
+    final data = {
+      "to": "/topics/connect",
+      "notification": {
+        "title": username,
+        "description": description,
+      },
+      "data": {
+        "type": "Order",
+        "id": "28",
+        "click_action": "FLUTTER_NOTIFICATION_CLICK"
+      }
+    };
+
+    final headers = {
+      "content-type": "application/json",
+      "Authorization":
+          "key=AAAAmpccoVo:APA91bGd0KTGKKHWDDauAeriNJCFHDZQ5YHsAykVyH5wsHO7c9XV1EcvsP9Qj7skQZibPKp45Aiob31kAvJaNNlGfpfqfIsBtm555aXtJpC-zT2_LRCKG4dyiwcnJMRFNi8B3S51q9ue"
+    };
+
+    final response = await http.post(url,
+        body: json.encode(data),
+        encoding: Encoding.getByName('utf-8'),
+        headers: headers);
+    if (response.statusCode == 200) {
+      print('success');
+      return true;
+    } else {
+      print('failed to send');
+      return false;
+    }
+  }
+
   void postImage(String uid, String username, String profImage) async {
     setState(() {
       isLoading = true;
@@ -75,6 +112,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         username,
         profImage,
       );
+      _sendNotification(username, _descriptionController.text);
       if (res == "success") {
         setState(() {
           isLoading = false;
@@ -136,11 +174,15 @@ class _AddPostScreenState extends State<AddPostScreen> {
               centerTitle: false,
               actions: <Widget>[
                 TextButton(
-                  onPressed: () => postImage(
-                    user.uid,
-                    user.username,
-                    user.photoUrl,
-                  ),
+                  onPressed: () async {
+                    await FirebaseMessaging.instance
+                        .subscribeToTopic('connect');
+                    postImage(
+                      user.uid,
+                      user.username,
+                      user.photoUrl,
+                    );
+                  },
                   child: const Text(
                     "Post",
                     style: TextStyle(

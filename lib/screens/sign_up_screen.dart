@@ -85,7 +85,7 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  fit: BoxFit.fill, image: AssetImage('assets/digit.jpg'))),
+                  fit: BoxFit.fill, image: AssetImage('assets/back.png'))),
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
@@ -169,9 +169,8 @@ class _SignupScreenState extends State<SignupScreen> {
               InkWell(
                 child: Container(
                   child: !_isLoading
-                      ? const Text(
-                          'Sign up',
-                        )
+                      ? const Text('Sign up',
+                          style: TextStyle(color: Colors.white))
                       : const CircularProgressIndicator(
                           color: primaryColor,
                         ),
@@ -188,11 +187,11 @@ class _SignupScreenState extends State<SignupScreen> {
                 onTap: signUpUser,
               ),
               const SizedBox(
-                height: 12,
+                height: 5,
               ),
               Flexible(
                 child: Container(),
-                flex: 2,
+                flex: 3,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -202,7 +201,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       'Already have an account?',
                       style: TextStyle(color: mobileBackgroundColor),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.of(context).push(
@@ -219,7 +218,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                     ),
                   ),
                 ],

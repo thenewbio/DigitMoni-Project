@@ -12,15 +12,13 @@ class TextFieldInput extends StatelessWidget {
       this.isPass = false,
       required this.hintText,
       required this.textInputType,
-      this.color = Colors.black})
+      this.color = Colors.white})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final inputBorder = OutlineInputBorder(
-      borderSide: Divider.createBorderSide(
-        context,
-      ),
+      borderSide: Divider.createBorderSide(context, color: Colors.yellow[600]),
     );
 
     return TextField(
@@ -28,7 +26,7 @@ class TextFieldInput extends StatelessWidget {
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(),
+        hintStyle: TextStyle(color: Colors.white),
         border: inputBorder,
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,

@@ -8,6 +8,8 @@ import 'package:digitmoni_project/widgets/follow_card_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/image_pop.dart';
+
 class ProfileScreen extends StatefulWidget {
   final String uid;
   const ProfileScreen({Key? key, required this.uid}) : super(key: key);
@@ -73,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         : Scaffold(
             appBar: AppBar(
-              backgroundColor: mobileBackgroundColor,
+              // backgroundColor: mobileBackgroundColor,
               title: Text(
                 '${userData['username']}',
               ),
@@ -119,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               text: 'Sign Out',
                                               backgroundColor:
                                                   mobileBackgroundColor,
-                                              textColor: primaryColor,
+                                              textColor: mobileBackgroundColor,
                                               borderColor: Colors.grey,
                                               function: () async {
                                                 await AuthMethods().signOut();
@@ -230,10 +232,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         final snap = snapshot.data!.docs;
 
                         // ignore: avoid_unnecessary_containers
-                        return Container(
-                          child: Image(
-                              image: NetworkImage(snap[index].get('postUrl')),
-                              fit: BoxFit.cover),
+                        return Hero(
+                          tag: 'postUrl',
+                          child: SizedBox(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => ImageDesc(
+                                          image: snap[index].get('postUrl'),
+                                        )));
+                              },
+                              child: Image(
+                                  image:
+                                      NetworkImage(snap[index].get('postUrl')),
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
                         );
                       },
                     );

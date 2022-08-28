@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  fit: BoxFit.fill, image: AssetImage('assets/digit.jpg'))),
+                  fit: BoxFit.fill, image: AssetImage('assets/back.png'))),
           padding: MediaQuery.of(context).size.width > webScreenSize
               ? EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width / 3)
