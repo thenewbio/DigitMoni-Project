@@ -14,5 +14,5 @@ This project is a starting point for a Flutter application in which the main pur
 - Screenshots of project samples
 - <img src="screenshots/Screenshot1.png" width= "200">          <img src="screenshots/Screenshot2.png" width= "200">       <img src="screenshots/Screenshot8.png" width= "200">
    <img src="screenshots/Screenshot4.png" width= "200">        <img src="screenshots/Screenshot3.png" width= "200">
-   <img src="screenshots/Screenshot7.png" width= "200">    <img src="screenshots/Screenshot5.jpg" width= "200">
+   <img src="screenshots/Screenshot7.png" width= "200">   
    <img src="screenshots/Screenshot6.jpg" width= "200">
