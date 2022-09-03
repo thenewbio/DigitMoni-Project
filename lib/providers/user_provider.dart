@@ -1,5 +1,4 @@
-import 'package:digitmoni_project/models/user.dart';
-import 'package:digitmoni_project/resources/auth_method.dart';
+import '/helper_class.dart';
 import 'package:flutter/widgets.dart';
 
 class UserProvider with ChangeNotifier {

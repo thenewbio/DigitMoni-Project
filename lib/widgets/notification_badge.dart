@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../screens/e2echat_screen.dart';
+import 'package:digitmoni_project/helper_class.dart';
 
 class BadgeNotification extends StatelessWidget {
   const BadgeNotification({

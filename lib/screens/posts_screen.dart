@@ -1,13 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/screens/e2echat_screen.dart';
-import 'package:digitmoni_project/screens/post_description.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/dimensions.dart';
-import 'package:digitmoni_project/widgets/post_card_widget.dart';
+import 'package:digitmoni_project/helper_class.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:provider/provider.dart';
-import '../providers/theme.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);

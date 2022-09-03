@@ -1,16 +1,10 @@
 // ignore: file_names
 import 'dart:convert';
 import 'dart:typed_data';
-import 'package:digitmoni_project/models/user.dart';
-import 'package:digitmoni_project/providers/user_provider.dart';
-import 'package:digitmoni_project/resources/firestore_method.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/pick_utils.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import '/helper_class.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);

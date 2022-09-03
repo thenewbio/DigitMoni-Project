@@ -1,13 +1,5 @@
-import 'package:digitmoni_project/resources/auth_method.dart';
-import 'package:digitmoni_project/responsive/mobile_layout.dart';
-import 'package:digitmoni_project/responsive/responsive_layout.dart';
-import 'package:digitmoni_project/responsive/web_layout.dart';
-import 'package:digitmoni_project/screens/sign_up_screen.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/dimensions.dart';
 import 'package:flutter/material.dart';
-import '../utils/pick_utils.dart';
-import '../widgets/text_input_widget.dart';
+import '/helper_class.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

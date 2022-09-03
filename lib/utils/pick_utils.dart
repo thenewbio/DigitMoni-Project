@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import '/helper_class.dart';
 
 // for picking up image from gallery
 pickImage(ImageSource source) async {

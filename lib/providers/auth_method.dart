@@ -1,6 +1,4 @@
-import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/resources/storage_method.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:digitmoni_project/models/user.dart' as model;
 
@@ -25,29 +23,22 @@ class AuthMethods {
     required String password,
     required String username,
     required String bio,
-    required Uint8List file,
   }) async {
     String res = "Some error Occurred";
     try {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
           username.isNotEmpty ||
-          bio.isNotEmpty ||
-          // ignore: unnecessary_null_comparison
-          file != null) {
+          bio.isNotEmpty) {
         // registering user in auth with email and password
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
-
-        String photoUrl = await StorageMethods()
-            .uploadImageToStorage('profilePics', file, false);
-
         model.User _user = model.User(
           username: username,
           uid: cred.user!.uid,
-          photoUrl: photoUrl,
+          photoUrl: '',
           email: email,
           bio: bio,
           followers: [],

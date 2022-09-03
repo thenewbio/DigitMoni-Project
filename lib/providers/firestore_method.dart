@@ -1,7 +1,5 @@
 import 'dart:typed_data';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/models/posts.dart';
-import 'package:digitmoni_project/resources/storage_method.dart';
+import 'package:digitmoni_project/helper_class.dart';
 import 'package:uuid/uuid.dart';
 
 class FireStoreMethods {

@@ -1,14 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/resources/auth_method.dart';
-import 'package:digitmoni_project/resources/firestore_method.dart';
-import 'package:digitmoni_project/screens/login_screen.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/pick_utils.dart';
-import 'package:digitmoni_project/widgets/follow_card_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/image_pop.dart';
+import '/helper_class.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -80,6 +72,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 '${userData['username']}',
               ),
               centerTitle: false,
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => EditProfileScreen(
+                              username: userData['username'],
+                              bio: userData['bio'])));
+                    },
+                    icon: Icon(Icons.edit))
+              ],
             ),
             body: ListView(
               children: [

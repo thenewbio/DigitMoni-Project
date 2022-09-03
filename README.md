@@ -4,16 +4,15 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a Flutter application in which the main purpose is to dive deep into the following;
 
-A few resources to get you started if this is your first Flutter project:
+1: User Experience using flutter(These includes: Designing beautiful user interface, )
+2: State Management using Provider
+3: Knowledge of Firebase(Authentication, Storage, FireStore)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 - Screenshots of project samples
-- <img src="screenshots/Screenshot4.jpg" width= "200">          <img src="screenshots/Screenshot5.jpg" width= "200">       <img src="screenshots/Screenshot.jpg" width= "200">
-   <img src="screenshots/Screenshot2.jpg" width= "200">        <img src="screenshots/Screenshot1.jpg" width= "200">
+- <img src="screenshots/Screenshot1.png" width= "200">          <img src="screenshots/Screenshot2.png" width= "200">       <img src="screenshots/Screenshot8.png" width= "200">
+   <img src="screenshots/Screenshot4.png" width= "200">        <img src="screenshots/Screenshot3.png" width= "200">
+   <img src="screenshots/Screenshot7.png" width= "200">    <img src="screenshots/Screenshot5.png" width= "200">
+   <img src="screenshots/Screenshot6.png" width= "200">

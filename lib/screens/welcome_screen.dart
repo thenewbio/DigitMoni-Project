@@ -1,18 +1,14 @@
-import 'package:digitmoni_project/screens/login_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as user;
 import 'package:flutter/material.dart';
-
-import '../responsive/mobile_layout.dart';
-import '../responsive/responsive_layout.dart';
-import '../responsive/web_layout.dart';
+import '/helper_class.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
+    return StreamBuilder<user.User?>(
+      stream: user.FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           // Checking if the snapshot has any data or not

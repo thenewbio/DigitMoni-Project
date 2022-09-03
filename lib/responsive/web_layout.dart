@@ -1,5 +1,4 @@
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/dimensions.dart';
+import '/helper_class.dart';
 import 'package:flutter/material.dart';
 
 class WebScreenLayout extends StatefulWidget {
@@ -61,17 +60,31 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
           ),
           IconButton(
             icon: Icon(
-              Icons.add_a_photo,
+              Icons.search,
               color: _page == 1 ? primaryColor : secondaryColor,
             ),
             onPressed: () => navigationTapped(1),
           ),
           IconButton(
             icon: Icon(
+              Icons.add_a_photo,
+              color: _page == 1 ? primaryColor : secondaryColor,
+            ),
+            onPressed: () => navigationTapped(2),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.chat,
+              color: _page == 1 ? primaryColor : secondaryColor,
+            ),
+            onPressed: () => navigationTapped(3),
+          ),
+          IconButton(
+            icon: Icon(
               Icons.person,
               color: _page == 2 ? primaryColor : secondaryColor,
             ),
-            onPressed: () => navigationTapped(2),
+            onPressed: () => navigationTapped(4),
           ),
         ],
       ),

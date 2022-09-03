@@ -1,13 +1,7 @@
 import 'dart:typed_data';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/resources/storage_method.dart';
-import 'package:digitmoni_project/utils/pick_utils.dart';
+import 'package:digitmoni_project/helper_class.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:digitmoni_project/models/user.dart' as model;
-import '../providers/user_provider.dart';
 
 class EditPost extends StatefulWidget {
   // final String image;

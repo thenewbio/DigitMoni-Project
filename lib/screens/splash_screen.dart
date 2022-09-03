@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'package:digitmoni_project/screens/welcome_screen.dart';
+import '/helper_class.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
   const AnimatedSplashScreen({Key? key}) : super(key: key);

@@ -1,3 +1,4 @@
+import '/helper_class.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldInput extends StatelessWidget {
@@ -22,11 +23,12 @@ class TextFieldInput extends StatelessWidget {
     );
 
     return TextField(
-      style: TextStyle(),
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(
+          color: mobileBackgroundColor,
+        ),
         border: inputBorder,
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,

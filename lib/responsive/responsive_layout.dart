@@ -1,7 +1,5 @@
-import 'package:digitmoni_project/providers/user_provider.dart';
-import 'package:digitmoni_project/utils/dimensions.dart';
+import 'package:digitmoni_project/helper_class.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ResponsiveLayout extends StatefulWidget {
   final Widget mobileScreenLayout;

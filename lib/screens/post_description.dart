@@ -1,15 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/providers/user_provider.dart';
-import 'package:digitmoni_project/resources/firestore_method.dart';
-import 'package:digitmoni_project/screens/comment_screen.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/pick_utils.dart';
-import 'package:digitmoni_project/widgets/like_animation_widget.dart';
+import '/helper_class.dart';
 import 'package:flutter/material.dart';
 import 'package:digitmoni_project/models/user.dart' as model;
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class PostDescriptionScreen extends StatefulWidget {
   final dynamic snap;

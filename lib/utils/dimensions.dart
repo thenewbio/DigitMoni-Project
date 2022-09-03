@@ -1,12 +1,7 @@
-import 'package:digitmoni_project/screens/addpost_screen.dart';
-import 'package:digitmoni_project/screens/chat_screen.dart';
-import 'package:digitmoni_project/screens/e2echat_screen.dart';
-import 'package:digitmoni_project/screens/onetoonechat.dart';
-import 'package:digitmoni_project/screens/posts_screen.dart';
 import 'package:digitmoni_project/screens/profile_screen.dart';
-import 'package:digitmoni_project/screens/search_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '/helper_class.dart';
 
 const webScreenSize = 600;
 final darkTheme = ThemeData(

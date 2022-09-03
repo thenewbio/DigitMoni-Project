@@ -1,9 +1,6 @@
 // ignore_for_file: avoid_print
-
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digitmoni_project/helper_class.dart';
 import 'package:digitmoni_project/screens/profile_screen.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 

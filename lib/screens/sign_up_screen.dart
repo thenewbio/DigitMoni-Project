@@ -1,14 +1,5 @@
-import 'dart:typed_data';
-import 'package:digitmoni_project/resources/auth_method.dart';
-import 'package:digitmoni_project/responsive/mobile_layout.dart';
-import 'package:digitmoni_project/responsive/responsive_layout.dart';
-import 'package:digitmoni_project/responsive/web_layout.dart';
-import 'package:digitmoni_project/screens/login_screen.dart';
-import 'package:digitmoni_project/utils/colors.dart';
-import 'package:digitmoni_project/utils/pick_utils.dart';
-import 'package:digitmoni_project/widgets/text_input_widget.dart';
+import '/helper_class.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -23,8 +14,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   bool _isLoading = false;
-  Uint8List? _image;
-
   @override
   void dispose() {
     super.dispose();
@@ -41,11 +30,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
     // signup user using our authmethodds
     String res = await AuthMethods().signUpUser(
-        email: _emailController.text,
-        password: _passwordController.text,
-        username: _usernameController.text,
-        bio: _bioController.text,
-        file: _image!);
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+    );
     // if string returned is sucess, user has been created
     if (res == "success") {
       setState(() {
@@ -69,14 +58,6 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  selectImage() async {
-    Uint8List im = await pickImage(ImageSource.gallery);
-    // set state because we need to display the image we selected on the circle avatar
-    setState(() {
-      _image = im;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,50 +67,19 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: const BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.fill, image: AssetImage('assets/back.png'))),
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: MediaQuery.of(context).size.width > webScreenSize
+              ? EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 3)
+              : const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(
-                child: Container(),
-                flex: 1,
-              ),
-              // SvgPicture.network(
-              //   'https://www.digitmoni.com/imageAssets/services/Graphic%20Design%20Image.svg',
-              //   color: primaryColor,
-              //   height: 64,
+              // Flexible(
+              //   child: Container(),
+              //   flex: 1,
               // ),
-              // const SizedBox(
-              //   height: 64,
-              // ),
-              Stack(
-                children: [
-                  _image != null
-                      ? CircleAvatar(
-                          radius: 64,
-                          backgroundImage: MemoryImage(_image!),
-                          backgroundColor: Colors.red,
-                        )
-                      : const CircleAvatar(
-                          radius: 64,
-                          backgroundImage: NetworkImage(
-                              'https://i.stack.imgur.com/l60Hf.png'),
-                          backgroundColor: Colors.red,
-                        ),
-                  Positioned(
-                    bottom: -10,
-                    left: 80,
-                    child: IconButton(
-                      onPressed: selectImage,
-                      icon: const Icon(
-                        Icons.add_a_photo,
-                        color: Colors.black38,
-                      ),
-                    ),
-                  )
-                ],
-              ),
               const SizedBox(
                 height: 24,
               ),
@@ -189,10 +139,10 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 5,
               ),
-              Flexible(
-                child: Container(),
-                flex: 3,
-              ),
+              // Flexible(
+              //   child: Container(),
+              //   flex: 1,
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -218,7 +168,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 1),
                     ),
                   ),
                 ],

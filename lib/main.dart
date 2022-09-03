@@ -1,17 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digitmoni_project/providers/user_provider.dart';
-import 'package:digitmoni_project/responsive/mobile_layout.dart';
-import 'package:digitmoni_project/responsive/responsive_layout.dart';
-import 'package:digitmoni_project/responsive/web_layout.dart';
-import 'package:digitmoni_project/screens/login_screen.dart';
-import 'package:digitmoni_project/screens/splash_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import '/helper_class.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'providers/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
